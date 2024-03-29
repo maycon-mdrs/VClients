@@ -1,6 +1,6 @@
 ﻿namespace VClients.Api.Models;
 
-public class AdressModel
+public class Adress
 {
     public int Id { get; set; }
     public string Address { get; set; }

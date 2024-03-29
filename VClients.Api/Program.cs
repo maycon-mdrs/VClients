@@ -1,14 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using VClients.Api.Context;
+using VClients.Api.Repositories;
 using VClients.Api.Repositories.Interfaces;
+using VClients.Api.Services;
+using VClients.Api.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 /*
  * https://www.mailslurp.com/blog/how-to-set-appsettings-config-property-with-environment-variable/
  */
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-builder.Configuration.AddEnvironmentVariables();
+//builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+//builder.Configuration.AddEnvironmentVariables();
 
 // Add services to the container.
 
@@ -23,7 +26,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(postgresConnection));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<IClientRepository, IClientRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 var app = builder.Build();
 
@@ -33,6 +37,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+/*
+ * https://stackoverflow.com/questions/48285408/how-to-disable-cors-completely-in-webapi
+ */
+app.UseCors(policy => policy
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+    .SetIsOriginAllowed(origin => true)
+);
 
 app.UseHttpsRedirection();
 
