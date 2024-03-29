@@ -6,7 +6,7 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Models.ClientModel, ClientDto>().ReverseMap();
-        CreateMap<Models.AdressModel, AdressDto>().ReverseMap();
+        CreateMap<Models.Client, ClientDto>().ReverseMap();
+        CreateMap<Models.Adress, AdressDto>().ReverseMap();
     }
 }

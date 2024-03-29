@@ -9,69 +9,69 @@ public class AppDbContext : DbContext
     {
     }
 
-    public DbSet<ClientModel> Clients { get; set; }
-    public DbSet<AdressModel> Adresses { get; set; }
+    public DbSet<Client> Clients { get; set; }
+    public DbSet<Adress> Adresses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         /* CLIENT */
-        modelBuilder.Entity<ClientModel>()
+        modelBuilder.Entity<Client>()
             .HasKey(c => c.Id);
-        modelBuilder.Entity<ClientModel>()
+        modelBuilder.Entity<Client>()
             .HasOne(c => c.Adress)
             .WithOne()
-            .HasForeignKey<AdressModel>(a => a.Id);
+            .HasForeignKey<Adress>(a => a.Id);
 
-        modelBuilder.Entity<ClientModel>()
+        modelBuilder.Entity<Client>()
             .Property(c => c.FullName)
             .HasMaxLength(100)
             .IsRequired();
 
-        modelBuilder.Entity<ClientModel>()
+        modelBuilder.Entity<Client>()
             .Property(c => c.Email)
             .HasMaxLength(100)
             .IsRequired();
 
-        modelBuilder.Entity<ClientModel>()
+        modelBuilder.Entity<Client>()
             .Property(c => c.Phone)
             .HasMaxLength(20)
             .IsRequired();
 
-        modelBuilder.Entity<ClientModel>()
+        modelBuilder.Entity<Client>()
             .Property(c => c.CreatedAt)
             .IsRequired();
 
         /* ADRESS */
-        modelBuilder.Entity<AdressModel>()
+        modelBuilder.Entity<Adress>()
             .HasKey(a => a.Id);
 
-        modelBuilder.Entity<AdressModel>()
+        modelBuilder.Entity<Adress>()
             .Property(a => a.Address)
             .HasMaxLength(255)
             .IsRequired();
 
-        modelBuilder.Entity<AdressModel>()
+        modelBuilder.Entity<Adress>()
             .Property(a => a.City)
             .HasMaxLength(50)
             .IsRequired();
 
-        modelBuilder.Entity<AdressModel>()
+        modelBuilder.Entity<Adress>()
             .Property(a => a.State)
             .HasMaxLength(50)
             .IsRequired();
 
-        modelBuilder.Entity<AdressModel>()
+        modelBuilder.Entity<Adress>()
             .Property(a => a.Zip)
             .HasMaxLength(20)
             .IsRequired();
 
-        modelBuilder.Entity<AdressModel>()
+        modelBuilder.Entity<Adress>()
             .Property(a => a.Country)
             .HasMaxLength(50)
             .IsRequired();
 
         /* POPULATING DATABASE */
-        modelBuilder.Entity<ClientModel>().HasData(
+        /*modelBuilder.Entity<ClientModel>().HasData(
             new ClientModel
             {
                 Id = 1,
@@ -106,6 +106,6 @@ public class AppDbContext : DbContext
                     Country = "USA"
                 }
             }
-        );
+        );*/
     }
 }

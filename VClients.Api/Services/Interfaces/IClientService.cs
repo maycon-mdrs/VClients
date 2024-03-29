@@ -7,6 +7,6 @@ public interface IClientService
     Task<IEnumerable<ClientDto>> GetClients();
     Task<ClientDto> GetClientById(int id);
     Task CreateClient(ClientDto clientDto);
-    Task UpdateClient(int id, ClientDto clientDto);
-    Task DeleteClient(int id);
+    /*Task UpdateClient(int id, ClientDto clientDto);
+    Task DeleteClient(int id);*/
 }

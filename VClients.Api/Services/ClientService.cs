@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using VClients.Api.DTOs;
+using VClients.Api.Models;
 using VClients.Api.Repositories.Interfaces;
 using VClients.Api.Services.Interfaces;
 
@@ -16,28 +17,32 @@ public class ClientService : IClientService
         _mapper = mapper;
     }
 
-    public Task<IEnumerable<ClientDto>> GetClients()
+    public async Task<IEnumerable<ClientDto>> GetClients()
     {
-        throw new NotImplementedException();
+        var clientsEntity = await _clientRepository.GetAll();
+        return _mapper.Map<IEnumerable<ClientDto>>(clientsEntity);
     }
 
-    public Task<ClientDto> GetClientById(int id)
-    {
-        throw new NotImplementedException();
+    public async Task<ClientDto> GetClientById(int id)
+    {   
+        var clientEntity = await _clientRepository.GetById(id);
+        return _mapper.Map<ClientDto>(clientEntity);
     }
 
-    public Task CreateClient(ClientDto clientDto)
+    public async Task CreateClient(ClientDto clientDto)
     {
-        throw new NotImplementedException();
+        var clientEntity = _mapper.Map<Client>(clientDto);
+        await _clientRepository.Create(clientEntity);
+        clientDto.Id = clientEntity.Id;
     }
 
-    public Task UpdateClient(int id, ClientDto clientDto)
+    /*public Task UpdateClient(int id, ClientDto clientDto)
     {
-        throw new NotImplementedException();
+        
     }
 
     public Task DeleteClient(int id)
     {
-        throw new NotImplementedException();
-    }
+        
+    }*/
 }
