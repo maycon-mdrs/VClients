@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  vclients.api:
+    image: ${DOCKER_REGISTRY-}vclientsapi
+    container_name: vclients.api
+    build:
+      context: .
+      dockerfile: VClients.Api/Dockerfile
+    ports:
+        - "5000:5000"
+        - "5001:5001"
+  
+  vclients.database:
+    image: postgres:alpine3.18
+    container_name: vclients.database
+    environment:
+      POSTGRES_DB: ${ASPNETCORE_DB__NAME}
+      POSTGRES_USER: ${ASPNETCORE_DB__USER}
+      POSTGRES_PASSWORD: ${ASPNETCORE_DB__PASSWORD}
+    volumes:
+      - vclients-db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
