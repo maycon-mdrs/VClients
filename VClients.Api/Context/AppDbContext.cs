@@ -9,103 +9,98 @@ public class AppDbContext : DbContext
     {
     }
 
-    public DbSet<Client> Clients { get; set; }
-    public DbSet<Adress> Adresses { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<FullAddress> Address { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        /* CLIENT */
-        modelBuilder.Entity<Client>()
-            .HasKey(c => c.Id);
-        modelBuilder.Entity<Client>()
-            .HasOne(c => c.Adress)
-            .WithOne()
-            .HasForeignKey<Adress>(a => a.Id);
+        /* RELATION */
+        modelBuilder.Entity<Customer>()
+            .HasOne(c => c.FullAddress)
+            .WithOne(a => a.Customer)
+            .HasForeignKey<FullAddress>(a => a.CustomerId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired(false);
 
-        modelBuilder.Entity<Client>()
+        /* CLIENT */
+        modelBuilder.Entity<Customer>()
+            .HasKey(c => c.Id);
+
+        modelBuilder.Entity<Customer>()
             .Property(c => c.FullName)
             .HasMaxLength(100)
             .IsRequired();
 
-        modelBuilder.Entity<Client>()
+        modelBuilder.Entity<Customer>()
             .Property(c => c.Email)
             .HasMaxLength(100)
             .IsRequired();
 
-        modelBuilder.Entity<Client>()
+        modelBuilder.Entity<Customer>()
             .Property(c => c.Phone)
             .HasMaxLength(20)
             .IsRequired();
 
-        modelBuilder.Entity<Client>()
+        modelBuilder.Entity<Customer>()
             .Property(c => c.CreatedAt)
             .IsRequired();
 
-        /* ADRESS */
-        modelBuilder.Entity<Adress>()
+        modelBuilder.Entity<Customer>()
+            .Property(c => c.UpdatedAt)
+            .IsRequired(false);
+        
+        /* ADDRESS */
+        modelBuilder.Entity<FullAddress>()
             .HasKey(a => a.Id);
 
-        modelBuilder.Entity<Adress>()
+        modelBuilder.Entity<FullAddress>()
             .Property(a => a.Address)
             .HasMaxLength(255)
             .IsRequired();
 
-        modelBuilder.Entity<Adress>()
+        modelBuilder.Entity<FullAddress>()
             .Property(a => a.City)
             .HasMaxLength(50)
             .IsRequired();
 
-        modelBuilder.Entity<Adress>()
+        modelBuilder.Entity<FullAddress>()
             .Property(a => a.State)
             .HasMaxLength(50)
             .IsRequired();
 
-        modelBuilder.Entity<Adress>()
+        modelBuilder.Entity<FullAddress>()
             .Property(a => a.Zip)
             .HasMaxLength(20)
             .IsRequired();
 
-        modelBuilder.Entity<Adress>()
+        modelBuilder.Entity<FullAddress>()
             .Property(a => a.Country)
             .HasMaxLength(50)
             .IsRequired();
 
         /* POPULATING DATABASE */
-        /*modelBuilder.Entity<ClientModel>().HasData(
-            new ClientModel
-            {
-                Id = 1,
-                FullName = "John Doe",
-                Phone = "1234567890",
-                Email = "user@gmail.com",
-                CreatedAt = DateTime.Now,
-                Adress = new AdressModel
-                {
-                    Id = 1,
-                    Address = "1234 Main St",
-                    City = "New York",
-                    State = "NY",
-                    Zip = "10001",
-                    Country = "USA"
-                }
-            },
-            new ClientModel
-            {
-                Id = 2,
-                FullName = "Jane Doe",
-                Phone = "0987654321",
-                Email = "Jane@gmail.com",
-                CreatedAt = DateTime.Now,
-                Adress = new AdressModel
-                {
-                    Id = 2,
-                    Address = "5678 Main St",
-                    City = "Los Angeles",
-                    State = "CA",
-                    Zip = "90001",
-                    Country = "USA"
-                }
-            }
-        );*/
+        var address = new FullAddress
+        {
+            Id = 1,
+            Address = "1234 Main St",
+            City = "New York",
+            State = "NY",
+            Zip = "10001",
+            Country = "USA", 
+            CustomerId = 1,
+        };
+
+        var customer = new Customer
+        {
+            Id = 1,
+            FullName = "John Doe",
+            Phone = "1234567890",
+            Email = "user@gmail.com",
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = null
+        };
+
+        modelBuilder.Entity<FullAddress>().HasData(address);
+        modelBuilder.Entity<Customer>().HasData(customer);
     }
 }
