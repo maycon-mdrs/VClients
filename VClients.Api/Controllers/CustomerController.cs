@@ -20,14 +20,19 @@ public class CustomerController : ControllerBase
     public async Task<ActionResult<IEnumerable<CustomerDTO>>> Get()
     {
         var customerDto = await _customerService.GetCustomers();
-        if (customerDto == null)
+        
+        /*
+         * !customerDto.Any() will return true if customerDto is empty
+         * and false if it contains any element.
+         */
+        if (!customerDto.Any() || customerDto == null)
             return NotFound("Products not found");
 
         return Ok(customerDto);
     }
 
     [HttpGet("{id:int}", Name = "GetCustomer")]
-    public async Task<ActionResult<CustomerDTO>> Get(int id)
+    public async Task<ActionResult<CustomerDTO>?> Get(int id)
     {
         var clientDto = await _customerService.GetCustomerById(id);
         if (clientDto == null)

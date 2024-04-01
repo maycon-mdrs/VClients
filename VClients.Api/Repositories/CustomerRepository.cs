@@ -19,7 +19,7 @@ public class CustomerRepository : ICustomerRepository
         return await _context.Customers.Include(c => c.FullAddress).ToListAsync();
     }
 
-    public async Task<Customer> GetById(int id)
+    public async Task<Customer?> GetById(int id)
     {
         return await _context.Customers.Include(c => c.FullAddress).FirstOrDefaultAsync(c => c.Id == id);
     }
