@@ -2,11 +2,11 @@
 using VClients.Api.Models;
 
 namespace VClients.UnitTests.Fixtures;
-public static class ClientFixture
+public static class CustomerFixture
 {
-    public static List<ClientDto> GetTestClientDtos()
+    public static List<CustomerDTO> GetTestCustomerDTOs()
     {
-        return new List<ClientDto>{
+        return new List<CustomerDTO>{
             new()
             {
                 Id =1,
@@ -20,9 +20,9 @@ public static class ClientFixture
         };
     }
 
-    public static List<Client> GetTestClients()
+    public static List<Customer> GetTestCustomers()
     {
-        return new List<Client>
+        return new List<Customer>
         {
             new()
             {

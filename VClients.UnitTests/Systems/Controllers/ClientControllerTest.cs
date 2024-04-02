@@ -7,28 +7,29 @@ using VClients.Api.Services.Interfaces;
 using VClients.UnitTests.Fixtures;
 
 namespace VClients.UnitTests.Systems.Controllers;
-public class ClientControllerTest
+public class CustomerControllerTest
 {
-    private Mock<IClientService> _service;
-    private ClientController _controller;
+    private Mock<ICustomerService> _service;
+    private CustomerController _controller;
 
-    public ClientControllerTest()
+    public CustomerControllerTest()
     {
-        _service = new Mock<IClientService>();
-        _controller = new ClientController(_service.Object);
+        _service = new Mock<ICustomerService>();
+        _controller = new CustomerController(_service.Object);
     }
 
     [Fact]
     public async Task Get_OnSuccess_ReturnsStatusCode200()
     {
+        //Arrange
+        _service.Setup(service => service.GetCustomers()).ReturnsAsync(CustomerFixture.GetTestCustomerDTOs);
 
         // Act
         var actionResult = await _controller.Get();
         var result = actionResult.Result as OkObjectResult;
-        var actual = result as IEnumerable<ClientDto>;
+        var actual = result as IEnumerable<CustomerDTO>;
 
         // Assert
-
         Assert.NotNull(result);
         result.StatusCode.Should().Be(200);
     }
@@ -37,25 +38,25 @@ public class ClientControllerTest
     public async Task Get_OnSuccess_CallsUserServiceExactlyOnce()
     {
         // Arrange
-        _service.Setup(service => service.GetClients()).ReturnsAsync(ClientFixture.GetTestClientDtos);
+        _service.Setup(service => service.GetCustomers()).ReturnsAsync(CustomerFixture.GetTestCustomerDTOs);
 
         // Act
         var actionResult = await _controller.Get();
         var result = actionResult.Result;
-        var actual = result as IEnumerable<ClientDto>;
+        var actual = result as IEnumerable<CustomerDTO>;
 
         // Assert
 
         Assert.NotNull(result);
-        _service.Verify(service => service.GetClients(), Times.Once());
+        _service.Verify(service => service.GetCustomers(), Times.Once());
     }
 
     [Fact]
-    public async Task Get_OnSucces_ReuturnsListOfClientFromService()
+    public async Task Get_OnSucces_ReuturnsListOfCustomerFromService()
     {
         // Arrange
-        var mockClientsDtoList = ClientFixture.GetTestClientDtos();
-        _service.Setup(service => service.GetClients()).ReturnsAsync(mockClientsDtoList);
+        var mockCustomersDtoList = CustomerFixture.GetTestCustomerDTOs();
+        _service.Setup(service => service.GetCustomers()).ReturnsAsync(mockCustomersDtoList);
 
         // Act
         var actionResult = await _controller.Get();
@@ -67,14 +68,14 @@ public class ClientControllerTest
         Assert.NotNull(result);
 
         var actual = result.Value;
-        actual.Should().BeOfType<List<ClientDto>>().And.BeSameAs(mockClientsDtoList);
+        actual.Should().BeOfType<List<CustomerDTO>>().And.BeSameAs(mockCustomersDtoList);
     }
 
     [Fact]
     public async Task Get_OnNoUserFound_ReturnsStatusCode404()
     {
         // Arrange
-        _service.Setup(service => service.GetClients()).ReturnsAsync(new List<ClientDto>());
+        _service.Setup(service => service.GetCustomers()).ReturnsAsync(new List<CustomerDTO>());
 
         // Act
         var actionResult = await _controller.Get();

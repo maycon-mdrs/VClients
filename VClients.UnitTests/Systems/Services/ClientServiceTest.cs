@@ -10,30 +10,30 @@ using VClients.UnitTests.Fixtures;
 
 namespace VClients.UnitTests.Systems.Services
 {
-    public class ClientServiceTest
+    public class CustomerServiceTest
     {
-        private ClientService _service;
-        private Mock<IClientRepository> _repository;
+        private CustomerService _service;
+        private Mock<ICustomerRepository> _repository;
         private Mock<IMapper> _mapper;
         private IMapper realMapper;
 
-        public ClientServiceTest()
+        public CustomerServiceTest()
         {
             var myProfile = new MappingProfile();
             var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
             realMapper = new Mapper(configuration);
 
             _mapper = new Mock<IMapper>();
-            _repository = new Mock<IClientRepository>();
-            _service = new ClientService(_repository.Object, _mapper.Object);
+            _repository = new Mock<ICustomerRepository>();
+            _service = new CustomerService(_repository.Object, _mapper.Object);
         }
 
         [Fact]
-        public async Task GetClients_OnSuccess_CallsClientRepository()
+        public async Task GetCustomers_OnSuccess_CallsCustomerRepository()
         {
             // Arrange
             // Act
-            var actual = await _service.GetClients();
+            var actual = await _service.GetCustomers();
 
             // Assert
             _repository.Verify(repository => repository.GetAll(), Times.Once);
@@ -41,26 +41,26 @@ namespace VClients.UnitTests.Systems.Services
         }
 
         [Fact]
-        public async Task GetClients_OnSuccess_ReturnsMappedClientDto()
+        public async Task GetCustomers_OnSuccess_ReturnsMappedCustomerDTO()
         {
             // Arrange
-            var clients = ClientFixture.GetTestClients();
-            var expectedResponse = realMapper.Map<IEnumerable<ClientDto>>(clients);
+            var customers = CustomerFixture.GetTestCustomers();
+            var expectedResponse = realMapper.Map<IEnumerable<CustomerDTO>>(customers);
 
-            _repository.Setup(repository => repository.GetAll()).ReturnsAsync(clients);
+            _repository.Setup(repository => repository.GetAll()).ReturnsAsync(customers);
 
-            _mapper.Setup(mapper => mapper.Map<IEnumerable<ClientDto>>(clients))
+            _mapper.Setup(mapper => mapper.Map<IEnumerable<CustomerDTO>>(customers))
                       .Returns(expectedResponse);
 
             // Act
-            var actual = await _service.GetClients();
+            var actual = await _service.GetCustomers();
 
             // Assert
             _mapper.Verify(
-                mapper => mapper.Map<IEnumerable<ClientDto>>(It.IsAny<IEnumerable<Client>>()),
+                mapper => mapper.Map<IEnumerable<CustomerDTO>>(It.IsAny<IEnumerable<Customer>>()),
                 Times.Once);
 
-            actual.Should().BeOfType<List<ClientDto>>().And.BeSameAs(expectedResponse);
+            actual.Should().BeOfType<List<CustomerDTO>>().And.BeSameAs(expectedResponse);
         }
     }
 }
