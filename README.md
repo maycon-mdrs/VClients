@@ -5,14 +5,14 @@ VClients is a project that aims to manage customer information. It provides a ba
 The frontend code can be found in the following [repository](https://github.com/LuigiVanin/customer-manager-sample).
 
 <!--ts-->
-* [📋 Requirements](#📋-requirements)
-* [⚙️ Project Setup](#⚙️-project-setup) 
-* [🐋 Run with Docker](#🐋-run-with-docker) 
+* [📋 Requirements](#-requirements)
+* [⚙️ Project Setup](#-project-setup) 
+* [🐋 Run with Docker](#-run-with-docker) 
     * [prompt](#to-run-the-project-use-the-following-command)
     * [Rider](#run-using-rider) 
     * [Virtual Studio 2022](#run-using-visual-studio-2022) 
-* [💻 Run with local machine](#💻-run-with-local-machine) 
-* [📁 Folder structure](#📁-folder-structure) 
+* [💻 Run with local machine](#-run-with-local-machine) 
+* [📁 Folder structure](#-folder-structure) 
 <!--te-->
 
 # 📋 Requirements
