@@ -41,11 +41,7 @@ ASPNETCORE__DB__PASSWORD=12345
 # 🐋 Run with Docker 
 
 > [!warning]
-> ⚠️ **Important Note:**  
-> For this projector to work, it's necessary to have [Docker](https://www.docker.com/products/docker-desktop/).
-
-> [!note]
-> ℹ️ **OBS:**  
+> For this projector to work, it's necessary to have [Docker](https://www.docker.com/products/docker-desktop/). <br>
 > Case: if the commands via prompts don't work to use `docker compose`, download one of these IDEs:
 > - [Visual Studio 2022](https://visualstudio.microsoft.com/pt-br/vs/)
 > - [Rider](https://www.jetbrains.com/pt-br/rider/)
@@ -67,14 +63,10 @@ Another alternative to run the project, using Visual Studio 2022:<br>
 # 💻 Run with local machine
 
 > [!warning]
-> ⚠️ **Important Note:**  
+> Remember to configure the `DefaultConnection` in `./VClients.Api/appsettings.json` correctly according to your PostgreSQL database settings. <br>
 > For this projector to work, it's necessary to have:
 > - [PostgreSQL](https://www.postgresql.org/)
 > - [SDK .NET](https://dotnet.microsoft.com/pt-br/download)
-
-> [!note]
-> ℹ️ **OBS:**  
-> Remember to configure the `DefaultConnection` in `./VClients.Api/appsettings.json` correctly according to your PostgreSQL database settings.
 
 Access the VClients.Api package:
 ```bash
