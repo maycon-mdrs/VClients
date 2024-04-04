@@ -6,7 +6,7 @@ The frontend code can be found in the following [repository](https://github.com/
 
 <!--ts-->
 * [📋 Requirements](#-requirements)
-* [⚙️ Project Setup](#--project-setup) 
+* [⚙️ Project Setup](#-project-setup) 
 * [🐋 Run with Docker](#-run-with-docker) 
     * [prompt](#to-run-the-project-use-the-following-command)
     * [Rider](#run-using-rider) 
@@ -26,7 +26,7 @@ The frontend code can be found in the following [repository](https://github.com/
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Rider](https://www.jetbrains.com/pt-br/rider/) or [Visual Studio 2022](https://visualstudio.microsoft.com/pt-br/vs/) (optionals)
 
-# ⚙️ Project Setup
+# ⚙️Project Setup
 
 1. Clone the repository:
   ```bash
