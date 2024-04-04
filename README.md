@@ -28,7 +28,7 @@ ASPNETCORE__DB__PASSWORD=12345
 ```
 
 #### appsettings.json
-```json
+```js
 {
     "ConnectionStrings": {
         "DefaultConnection": "Host=vclients.database;Port=5432;Database=vclients;Username=postgres;Password=12345"
@@ -52,10 +52,10 @@ $ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 # http://localhost:5000/swagger/
 ```
 
-Another alternative to run the project, using Rider:<br>
+Run using Rider:<br>
 ![Rider run](https://github.com/maycon-mdrs/web-2/assets/81583731/1bd45aef-3268-4032-ac4c-0a4424ae81e0)
 
-Another alternative to run the project, using Visual Studio 2022:<br>
+Run using Visual Studio 2022:<br>
 ![Visual Studio 2022 run](https://github.com/maycon-mdrs/web-2/assets/81583731/7f3a66d4-7a5f-415f-9a81-124cb9cec4e8)
 
 <br>
