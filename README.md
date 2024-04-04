@@ -6,7 +6,7 @@ The frontend code can be found in the following [repository](https://github.com/
 
 <!--ts-->
 * [📋 Requirements](#-requirements)
-* [⚙️ Project Setup](#-project-setup) 
+* [⚙️ Project Setup](#--project-setup) 
 * [🐋 Run with Docker](#-run-with-docker) 
     * [prompt](#to-run-the-project-use-the-following-command)
     * [Rider](#run-using-rider) 
