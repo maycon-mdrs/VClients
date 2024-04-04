@@ -5,17 +5,17 @@ VClients is a project that aims to manage customer information. It provides a ba
 The frontend code can be found in the following [repository](https://github.com/LuigiVanin/customer-manager-sample).
 
 <!--ts-->
-* [📋 Requirements](#-requirements)
-* [⚙️ Project Setup](#-project-setup) 
-* [🐋 Run with Docker](#-run-with-docker) 
+* [📋 Requirements](#requirements)
+* [⚙️ Project Setup](#project-setup) 
+* [🐋 Run with Docker](#run-with-docker) 
     * [prompt](#to-run-the-project-use-the-following-command)
     * [Rider](#run-using-rider) 
     * [Virtual Studio 2022](#run-using-visual-studio-2022) 
-* [💻 Run with local machine](#-run-with-local-machine) 
-* [📁 Folder structure](#-folder-structure) 
+* [💻 Run with local machine](#run-with-local-machine) 
+* [📁 Folder structure](#folder-structure) 
 <!--te-->
 
-# 📋 Requirements
+# Requirements
 ### For using Docker:
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Docker Compose](https://docs.docker.com/compose/install/)
@@ -26,7 +26,7 @@ The frontend code can be found in the following [repository](https://github.com/
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Rider](https://www.jetbrains.com/pt-br/rider/) or [Visual Studio 2022](https://visualstudio.microsoft.com/pt-br/vs/) (optionals)
 
-# ⚙️Project Setup
+# Project Setup
 
 1. Clone the repository:
   ```bash
@@ -63,7 +63,7 @@ The frontend code can be found in the following [repository](https://github.com/
   }
   ```
 
-# 🐋 Run with Docker
+# Run with Docker
 
 > [!warning]
 > If the commands via prompts don't work to use `docker compose`, download one of these IDEs and run:
@@ -92,7 +92,7 @@ $ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 2. After that, just click the greeen play button to run the project.
     ![Visual Studio 2022 run](https://github.com/maycon-mdrs/web-2/assets/81583731/93f876c1-547c-4906-b5e0-f3241fd1c793)
 
-# 💻 Run with local machine
+# Run with local machine
 
 > [!warning]
 > Remember to configure the `DefaultConnection` in `./VClients.Api/appsettings.json` correctly according to your PostgreSQL database settings.
@@ -109,7 +109,7 @@ $ dotnet run
 # http://localhost:5138/swagger/
 ```
 
-# 📁 Folder structure
+# Folder structure
 - `/VClients.Api/*` - contains the backend code (API).
 - `/Context` - contains the database context.
 - `/Migrations` - contains the database migrations.
