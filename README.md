@@ -42,7 +42,7 @@ ASPNETCORE__DB__PASSWORD=12345
 
 > [!warning]
 > For this projector to work, it's necessary to have [Docker](https://www.docker.com/products/docker-desktop/). <br>
-> Case: if the commands via prompts don't work to use `docker compose`, download one of these IDEs:
+> If the commands via prompts don't work to use `docker compose`, download one of these IDEs:
 > - [Visual Studio 2022](https://visualstudio.microsoft.com/pt-br/vs/)
 > - [Rider](https://www.jetbrains.com/pt-br/rider/)
 
