@@ -5,9 +5,9 @@ services:
     image: postgres:alpine3.18
     container_name: vclients.database
     environment:
-      POSTGRES_DB: vclients
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: ${ASPNETCORE__DB__NAME}
+      POSTGRES_USER: ${ASPNETCORE__DB__USER}
+      POSTGRES_PASSWORD: ${ASPNETCORE__DB__PASSWORD}
     volumes:
       - /var/lib/postgresql/data
     ports:

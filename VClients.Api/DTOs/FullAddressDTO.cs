@@ -1,10 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using VClients.Api.Models;
 
 namespace VClients.Api.DTOs;
 
-public class AdressDto
+public class FullAddressDTO
 {
+    [JsonIgnore]
     public int Id { get; set; }
+    
+    [JsonIgnore]
+    public int? CustomerId { get; set; }
+    [JsonIgnore]
+    public Customer? Customer { get; set; }
     
     [Required]
     [MinLength(1)]
@@ -15,8 +23,8 @@ public class AdressDto
     [MinLength(1)]
     [MaxLength(50)]
     public string City { get; set; }
-    [Required]
     
+    [Required]
     [MinLength(1)]
     [MaxLength(50)]
     public string State { get; set; }

@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace VClients.Api.DTOs;
 
-public class ClientDto
+public class CustomerDTO
 {
     public int Id { get; set; }
     
@@ -21,6 +22,8 @@ public class ClientDto
     [MaxLength(20)]
     public string Phone { get; set; }
     
-    public DateTime CreatedAt { get; set; }
-    public AdressDto? Adress { get; set; }
+    public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+    
+    public FullAddressDTO? FullAddress { get; set; }
 }
